@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+  <!-- firebase angular code -->
+  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.js"></script>
+
+  <!-- your app's js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+  <script src="js/uuid.js"></script>
+  <script src="js/app.js"></script>
+</head>
+
+<body ng-app="starter" ng-controller="firebaseCtl">
+
+  <ion-pane>
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Ionic Expense Maanger</h1>
+      <i class="icon ion-plus" ng-show="sKey != null && page == 'list'" ng-click="gotoPage('add')"></i>
+      <i class="icon ion-log-out" ng-show="sKey != null" ng-click="logout()"></i>
+    </ion-header-bar>
+    <ion-content>
+      <img src="img/house1.png">
+      <div ng-show="sKey == null">
+        <form ng-submit="initializeStorage()">
+          <input placeholder="Enter your phone number or email" ng-model="model.uname" />
+          <input type="password" placeholder="enter a password" ng-model="model.password" />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <div ng-show="sKey != null">
+        <div ng-show="page == 'list'">
+          <ion-list ng-repeat="(guid, expense) in expenses">
+            <ion-item>
+              <div>
+                <span>{{ expense.CategoryName }}</span>
+                <span>{{ expense.expenseName }}</span>
+                <span>{{ expense.price }}</span>
+                <span>  <i class="icon ion-trash-b" ng-click="removeItem(guid)" ></i></span>
+
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div ng-show="page == 'add'">
+          <form ng-submit="addExpense()">
+            <select ng-model="model.category">
+                    <option ng-value="none" > Select Expense Type </option>
+                    <option ng-repeat="val in categories"  ng-value="val"> {{val}} </option>
+                  </select>
+            <input ng-model="model.expenseName" placeholder="add ExpenseName" />
+            <input ng-model="model.price" placeholder="add Amount" />
+            <button type="submit">+</button>
+
+          </form>
+        </div>
+      </div>
+      <a href="clothes.html" class="indexhtmls"><button>Clothes</button></a>
+      <a href="bakery.html" class="indexhtmls"><button>Bakery</button></a>
+      <a href="location.html" class="indexhtmls"><button>Location</button></a>
+      <div>
+        <button ng-click="barcodescanner()" id="barcodescanner1">Check Product</button>
+        <p id="barcodetext"></p>
+      </div>
+    </ion-content>
+  </ion-pane>
+</body>
+
+</html>

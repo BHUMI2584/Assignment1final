@@ -1,0 +1,54 @@
+/* Empty. Add your own CSS if you like */
+
+.indent{
+    padding-left:2em;
+}
+ .icon{
+    position: absolute;
+    right: 10px;
+    font-size: 25px;
+
+}
+ .ion-plus{
+    margin-right: 50px;
+}
+
+ion-content{
+    background-color: lightyellow;
+}
+
+img{
+    width: 90%;
+    height: 150px;
+    margin: 5%;
+}
+
+.indexhtmls{
+    margin:9%;
+}
+.indexhtmls1{
+    margin-left:45%;
+    margin-right: 45%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+button{
+    background-color: lightblue;
+}
+
+iframe{
+    margin:5%;
+}
+
+#maps{
+    text-align: center;
+    color:red;
+    font-size:120%;
+    font-weight: bold;
+}
+
+#barcodescanner1{
+    margin-top:5%;
+    margin-left: 35%;
+    font-weight: bolder;
+}
