@@ -24,7 +24,7 @@ img{
 }
 
 .indexhtmls{
-    margin:9%;
+    margin:0%;
 }
 .indexhtmls1{
     margin-left:45%;
@@ -49,6 +49,13 @@ iframe{
 
 #barcodescanner1{
     margin-top:5%;
-    margin-left: 35%;
     font-weight: bolder;
+}
+
+.links{
+    text-align: center;
+}
+
+#barc{
+    text-align: center;
 }
